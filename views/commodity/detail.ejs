@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<link rel="stylesheet" href="/css/bootstrap.min.css" />
+	<link rel="stylesheet" href="/css/style.css" />
+	<script src="/js/jquery.min.js"></script>
+	<script src="/js/bootstrap.min.js"></script>
+	<script>
+		$(function(){
+			//商品+-
+			$('.commodity-quantity span').click(function(){
+				var self=$(this);
+				var type=self.attr('data-type'),
+					num=parseFloat(self.siblings('input').val());
+				if(type=='add'){
+					num+=1;
+				}else if(type=='substr'){
+					if(num>1){
+						num-=1;
+					}else{
+						return false;
+					}
+				}
+				self.siblings('input').val(num);
+				tamount();
+			});
+		});
+		//改变购买数量
+		function tamount(){
+			var addtToCart=$('#addtToCart').attr('href').split('/');
+			addtToCart[addtToCart.length-1]=$('#numacount').val();
+			$('#addtToCart').attr('href',addtToCart.join('/'));
+		}
+	</script>
+	<title>商品-<%=commodity.name%></title>
+</head>
+<body>
+	<%- include('../common/header') %>
+	<div class="container-fluid">
+		<div class="container">
+			<div class="row">
+				<div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+					<img src="http://localhost:9090/images/<%=commodity.imgSrc%>" alt="" class="img-responsive" />
+				</div>
+				<div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
+					<p><%=commodity.name%></p>
+					<p><span>秒杀价</span>￥<%=commodity.price%></p>
+					<p>由塞菲尔官方旗舰店从广东深圳市发货，并提供售后服务。</p>
+					<div class="input-group pull-left commodity-quantity">
+						<span class="input-group-addon" data-type="add">+</span>
+						<input type="text" id="numacount" class="form-control" value="1" />
+						<span class="input-group-addon" data-type="substr">-</span>
+					</div>
+					<div class="pull-left"><a id="addtToCart" href="/commodity/addToCart/<%=commodity._id%>/1" class="btn">加入购物车</a></div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="container-fluid">
+		<div class="container">
+			<div>
+				<ul class="nav nav-tabs" role="tablist">
+					<li class="active" role="presentation"><a href="#profile" role="tab" data-toggle="tab">商品介绍</a></li>
+					<li role="presentation"><a href="#specification" role="tab" data-toggle="tab">规格与包装</a></li>
+					<li role="presentation"><a href="#aftersale" role="tab" data-toggle="tab">售后保障</a></li>
+					<li role="presentation"><a href="#recommend" role="tab" data-toggle="tab">商品评价</a></li>
+				</ul>
+				<div class="tab-content">
+					<div class="tab-pane fade in active" id="profile">
+						<p>品牌：<%=commodity.brandName%></p>
+						<div class="container">
+							<div class="row">
+								<div class="col-xs-12 col-sm-4 col-md-4 col-lg-3">
+									<p>商品名称：<%=commodity.name%></p>
+								</div>
+								<div class="col-xs-12 col-sm-4 col-md-4 col-lg-3">
+									<p>商品编号：<%=commodity.commodityCode%></p>
+								</div>
+								<div class="col-xs-12 col-sm-4 col-md-4 col-lg-3">
+									<p>商品毛重：<%=commodity.commodityWeight%>kg</p>
+								</div>
+								<div class="col-xs-12 col-sm-4 col-md-4 col-lg-3">
+									<p>商品产地：<%=commodity.commodityLocation%></p>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="tab-pane fade" id="specification">
+						<p>规格与包装</p>
+					</div>
+					<div class="tab-pane fade" id="aftersale">
+						<p>售后服务</p>
+					</div>
+					<div class="tab-pane fade" id="recommend">
+						<p>评价</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<%- include('../common/footer') %>
+</body>
+</html>

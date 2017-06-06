@@ -1,0 +1,22 @@
+var Catagory=require('../models/catagory');
+module.exports=function(app){
+	app.get('/',function(req,res){
+		Catagory.getCatagories().then(function(catagories){
+			req.session.catagories=catagories;
+			res.redirect('/home');
+		});
+	});
+	app.use('/login',require('./login'));
+	app.use('/register',require('./register'));
+	app.use('/logout',require('./logout'));
+	app.use('/commodity',require('./commodity'));
+	app.use('/personal',require('./personal'));
+	app.use('/home',function(req,res){
+		Catagory.getCatagoriesAndCommodities().then(function(catagories){
+			res.render('home',{catagories:catagories});
+		});
+	});
+	app.use('/help',function(req,res){
+		res.render('help');
+	});
+};

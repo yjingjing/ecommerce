@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<link rel="stylesheet" href="/css/bootstrap.min.css" />
+	<link rel="stylesheet" href="/css/style.css" />
+	<script src="/js/jquery.min.js"></script>
+	<script src="/js/bootstrap.min.js"></script>
+	<title>购物车</title>
+	<script>
+			$(function(){
+				//商品+-
+				$('.cart-quantity a').click(function(){
+					var self=$(this);
+					var type=self.attr('data-type'),
+						num=parseFloat(self.siblings('input').val());
+					if(type=='add'){
+						num+=1;
+					}else if(type=='substr'){
+						if(num>1){
+							num-=1;
+						}else{
+							return false;
+						}
+					}
+					self.siblings('input').val(num);
+					tamount();
+				});
+				//checkbox单选事件
+				$('input[name="chkItem"]:checkbox').click(function(){
+					var isCheck=$('input[name="chkItem"]:not(:checked)').length?false:true;
+					$('#checkAll').prop("checked",isCheck);
+					tamount();
+				});
+				//checkbox全选事件
+				$('#checkAll').click(function(){
+					var self=$(this);
+					$('input[name="chkItem"]').each(function(){
+						$(this).prop("checked",self.is(':checked'));
+					});
+					tamount();
+				});
+			});
+			function tamount(){
+				var sum=0;
+				var cartId="";
+				$('input[name="chkItem"]:checked').each(function(){
+					var self=$(this),
+						price=self.attr('data-price'),
+						index=self.attr('data-index'),
+						cId=self.attr('data-id');
+					var quantity=$('#Q'+index).val();
+					cartId+=cId+",";
+					sum+=(parseFloat(price)*parseFloat(quantity));
+				});
+				cartId=cartId.substring(0,cartId.length-1);
+				$("#money").html('￥'+sum+'.00');
+				$("#sum").val(sum);
+				$("#cartId").val(cartId);
+			}
+		</script>
+</head>
+<body>
+	<%- include('../common/header') %>
+	<div class="container-fluid">
+		<div class="container">
+			<div class="row">
+				<div class="col-xs-12 col-sm-3 col-md-3 col-lg-2">
+					<%- include('../common/left') %>
+				</div>
+				<div class="col-xs-12 col-sm-9 col-md-9 col-lg-10">
+					<div class="right-wrap">
+						<%if(carts.length==0){%>
+						<p class="text-center">购物车中没有商品,请回<a href="/home">首页</a>购物</p>
+						<%}else{%>
+						<table class="table table-bordered text-center">
+							<tr>
+								<td><input type="checkbox" id="checkAll" />全选</td>
+								<td>商品</td>
+								<td>价格</td>
+								<td>数量</td>
+								<td>操作</td>
+							</tr>
+							<%for(var i in carts){if(!carts[i].cName)continue;%>
+							<tr>
+								<td><input type="checkbox" name="chkItem" data-id="<%=carts[i]._id%>" data-price="<%=carts[i].cPrice%>" data-index="<%=i%>" /></td>
+								<td><%=carts[i].cName%></td>
+								<td>￥<%=carts[i].cPrice%></td>
+								<td class="cart-quantity">
+									<a href="javascript:void(0);" class="btn btn-default btn-xs" data-type="add">+</a>
+									<input type="text" id="Q<%=i%>" style="width: 40px;" value="<%=carts[i].cQuantity%>" />
+									<a href="javascript:void(0);" data-type="substr" class="btn btn-default btn-xs">-</a>
+								</td>
+								<td><a href="/personal/delFromCart/<%=carts[i]._id%>" class="btn btn-primary">删除</a></td>
+							</tr>
+							<%}%>
+						</table>
+						<div class="pull-right">
+							<form action="/personal/clearing" method="post">
+								<input type="hidden" name="cartId" id="cartId" value="" />
+								<input type="hidden" name="amount" value="" id="sum" />
+								总计：<span id="money" style="color: red;font-size: 25px;">￥0.00</span>
+								<input type="submit" value="结算" class="btn btn-cart pull-right" />
+							</form>
+						</div>
+						<%}%>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<%- include('../common/footer') %>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<link rel="stylesheet" href="/css/bootstrap.min.css" />
+	<link rel="stylesheet" href="/css/style.css" />
+	<script src="/js/jquery.min.js"></script>
+	<script src="/js/bootstrap.min.js"></script>
+	<title>商品分类-<%=catagory.cname%></title>
+</head>
+<body>
+	<%- include('../common/header') %>
+	<div class="container-fluid">
+		<div class="container">
+			<div class="row">
+				<%for(var i in commodities){if(!commodities[i].name)continue;%>
+				<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+					<div class="img-wrap">
+						<a href="/commodity/detail/<%=ctype%>/<%=commodities[i]._id%>">
+							<img src="http://localhost:9090/images/<%=commodities[i].imgSrc%>" alt="" class="img-responsive" />
+							<p>铁牌会员尊享本场商品折上再<%=commodities[i].discount%>折优惠</p>
+						</a>
+					</div>
+					<p><%=commodities[i].name%>&nbsp;&nbsp;库存量：<%=commodities[i].stockNum%><span class="pull-right">剩<%=commodities[i].remainTime%>天</span></p>
+				</div>
+				<%}%>
+			</div>
+		</div>
+	</div>
+	<%- include('../common/footer') %>
+</body>
+</html>

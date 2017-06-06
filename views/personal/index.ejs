@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<link rel="stylesheet" href="/css/bootstrap.min.css" />
+	<link rel="stylesheet" href="/css/style.css" />
+	<script src="/js/jquery.min.js"></script>
+	<script src="/js/bootstrap.min.js"></script>
+	<title>个人中心</title>
+</head>
+<body>
+	<%- include('../common/header') %>
+	<div class="container-fluid">
+		<div class="container">
+			<div class="row">
+				<div class="col-xs-12 col-sm-3 col-md-3 col-lg-2">
+					<%- include('../common/left') %>
+				</div>
+				<div class="col-xs-12 col-sm-9 col-md-9 col-lg-10">
+					<div class="right-wrap">
+						<%if(user){%>
+							<p>用户名：<%=user.name%></p>
+							<p>性别：<%if(user.gender=='m'){%>
+								女
+							<%}else if(user.gender=='f'){%>
+								男
+							<%}else if(user.gender=='x'){%>
+								保密
+							<%}%></p>
+							<p>简介：<%=user.resume%></p>
+							<p>头像：<img src="<%=rootPath%>/images/<%=user.portrait%>" alt="" /></p>
+						<%}%>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<%- include('../common/footer') %>
+</body>
+</html>

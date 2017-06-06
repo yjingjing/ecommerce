@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<link rel="stylesheet" href="/css/bootstrap.min.css" />
+	<link rel="stylesheet" href="/css/style.css" />
+	<script src="/js/jquery.min.js"></script>
+	<script src="/js/bootstrap.min.js"></script>
+	<title>我的订单</title>
+</head>
+<body>
+	<%- include('../common/header') %>
+	<div class="container-fluid">
+		<div class="container">
+			<div class="row">
+				<div class="col-xs-12 col-sm-3 col-md-3 col-lg-2">
+					<%- include('../common/left') %>
+				</div>
+				<div class="col-xs-12 col-sm-9 col-md-9 col-lg-10">
+					<div class="right-wrap">
+						<table class="table table-bordered text-center">
+							<tr>
+								<td>序号</td>
+								<td>下单时间</td>
+								<td>订单状态</td>
+								<td>总额</td>
+								<td>操作</td>
+							</tr>
+							<%for(var i in orders){if(!orders[i].amount)continue;%>
+							<tr>
+								<td><%=parseInt(i)+1%>&nbsp;&nbsp;<%=orders[i]._id%></td>
+								<td><%=orders[i].created_at%></td>
+								<td><%if(orders[i].oStatus==0){%>
+									待支付
+								<%}else if(orders[i].oStatus==1){%>
+									已支付
+								<%}else if(orders[i].oStatus==2){%>
+									已完成
+								<%}else if(orders[i].oStatus==3){%>
+									已取消
+								<%}%></td>
+								<td>￥<%=orders[i].amount%></td>
+								<td><a href="/personal/myorderdetail/<%=orders[i]._id%>" class="btn btn-primary">详情</a></td>
+							</tr>
+							<%}%>
+						</table>
+						<nav aria-label="Page navigation" class="text-center">
+						  <ul class="pagination">
+						  	<%if(isFirstPage==false){%>
+					  		<li>
+						      <a href="/personal/myorder/<%=parseInt(pageNum)-1%>" aria-label="Previous">
+						        <span aria-hidden="true">上一页</span>
+						      </a>
+						    </li>
+						  	<%}else{%>
+					  		<li>
+						      <a href="javascript:void(0);" aria-label="Previous">
+						        <span aria-hidden="true">上一页</span>
+						      </a>
+						    </li>
+						  	<%}%>
+						    <%for(var i=0;i<totalPage;i++){%>
+						    	<%if(i==pageNum){%>
+						    	<li class="active"><span><span aria-hidden="true"><%=parseInt(i)+1%></span></span></li>
+						    	<%}else{%>
+						    	<li><a href="/personal/myorder/<%=i%>"><%=parseInt(i)+1%></a></li>
+						    	<%}%>
+						    <%}%>
+						    <%if(isLastPage==false){%>
+					    	<li>
+						      <a href="/personal/myorder/<%=parseInt(pageNum)+1%>" aria-label="Next">
+						        <span aria-hidden="true">下一页</span>
+						      </a>
+						    </li>
+						    <%}else{%>
+					    	<li>
+						      <a href="javascript:void(0);" aria-label="Next">
+						        <span aria-hidden="true">下一页</span>
+						      </a>
+						    </li>
+						    <%}%>
+						  </ul>
+						</nav>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<%- include('../common/footer') %>
+</body>
+</html>

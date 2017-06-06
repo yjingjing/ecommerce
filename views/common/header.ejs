@@ -1,0 +1,55 @@
+<div class="container-fluid header-top">
+	<div class="container-fluid">
+		<% if(user){ %>
+		<ul class="list-unstyled list-inline text-right">
+			<li>欢迎您，<%=user.name%></li>
+			<li>|</li>
+			<li><a href="/personal/index">个人中心</a></li>
+			<li>|</li>
+			<li><a href="/personal/mycart">购物车</a></li>
+			<li>|</li>
+			<li><a href="/help">帮助中心</a></li>
+			<li>|</li>
+			<li><a href="/logout">退出</a></li>
+		</ul>
+		<% }else{ %>
+		<ul class="list-unstyled list-inline text-right">
+			<li><a href="/login">登录</a></li>
+			<li>|</li>
+			<li><a href="/register">注册</a></li>
+			<li>|</li>
+			<li><a href="help">帮助中心</a></li>
+		</ul>
+		<% } %>
+	</div>
+</div>
+<div class="container-fluid">
+	<div class="container">
+		<div class="header-logo">
+			<img src="/images/logo.png" class="img-responsive" alt="" />
+		</div>
+	</div>
+</div>
+<header class="navbar navbar-static-top">
+	<div class="container">
+		<nav class="collapse navbar-collapse navigatin">
+			<ul class="nav navbar-nav">
+				<%if(cId){%>
+					<li><a href="/home">首页</a></li>
+					<%for(var i in catagorys){if(!catagorys[i].cname)continue;%>
+						<%if(catagorys[i]._id==cId){%>
+						<li class="active"><a href="/commodity/<%=catagorys[i]._id%>"><%=catagorys[i].cname%></a></li>
+						<%}else{%>
+						<li><a href="/commodity/<%=catagorys[i]._id%>"><%=catagorys[i].cname%></a></li>
+						<%}%>
+					<%}%>
+				<%}else{%>
+					<li class="active"><a href="/home">首页</a></li>
+					<%for(var i in catagorys){if(!catagorys[i].cname)continue;%>
+					<li><a href="/commodity/<%=catagorys[i]._id%>"><%=catagorys[i].cname%></a></li>
+					<%}%>
+				<%}%>
+			</ul>
+		</nav>
+	</div>
+</header>

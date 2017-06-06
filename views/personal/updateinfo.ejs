@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<link rel="stylesheet" href="/css/bootstrap.min.css" />
+	<link rel="stylesheet" href="/css/style.css" />
+	<script src="/js/jquery.min.js"></script>
+	<script src="/js/bootstrap.min.js"></script>
+	<title>修改信息</title>
+</head>
+<body>
+	<%- include('../common/header') %>
+	<div class="container-fluid">
+		<div class="container">
+			<div class="row">
+				<div class="col-xs-12 col-sm-3 col-md-3 col-lg-2">
+					<%- include('../common/left') %>
+				</div>
+				<div class="col-xs-12 col-sm-9 col-md-9 col-lg-10">
+					<div class="right-wrap">
+						<%if(user){%>
+						<form action="/personal/updateinfo" method="post">
+							<div class="input-group">
+								<span class="input-group-addon">用户名：</span>
+								<input type="text" class="form-control" name="name" value="<%=user.name%>" readonly="readonly" />
+							</div>
+							<div class="input-group">
+								<span class="input-group-addon">性别：<%=user.gender%></span>
+								<select name="gender" id="" class="form-control">
+									<option value="m">女</option>
+									<option value="f">男</option>
+									<option value="x">保密</option>
+								</select>
+							</div>
+							<div class="input-group">
+								<span class="input-group-addon">简介：</span>
+								<textarea name="resume" class="form-control" rows="5"><%=user.resume%></textarea>
+							</div>
+							<div class="input-group">
+								<span class="input-group-addon">头像：</span>
+								<input type="file" name="portrait" id="" />
+								<img src="<%=rootPath%>/images/<%=user.portrait%>" alt="" />
+							</div>
+						</form>
+						<%}%>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<%- include('../common/footer') %>
+</body>
+</html>
