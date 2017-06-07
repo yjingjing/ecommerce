@@ -24,6 +24,8 @@
 						}
 					}
 					self.siblings('input').val(num);
+					var id=self.parent('td').attr('data-id');
+					changeCommodity(id,type);
 					tamount();
 				});
 				//checkbox单选事件
@@ -41,16 +43,38 @@
 					tamount();
 				});
 			});
+			function changeCommodity(id,type){
+				$.ajax({
+					type:"post",
+					url:"/personal/updatecart",
+					data:{
+						id:id,
+						type:type
+					},
+					dataType:"json",
+					success:function(data,status){
+						console.log(data);
+						console.log(status);
+					},
+					error:function(data,status){
+						
+					}
+				});
+			}
 			function tamount(){
 				var sum=0;
 				var cartId="";
+				var cartOldQuantity="";
+				var cartNewQuantity="";
 				$('input[name="chkItem"]:checked').each(function(){
 					var self=$(this),
 						price=self.attr('data-price'),
 						index=self.attr('data-index'),
-						cId=self.attr('data-id');
+						cId=self.attr('data-id'),
+						cOldQuantity=self.attr('data-quantity');
 					var quantity=$('#Q'+index).val();
 					cartId+=cId+",";
+					cartOldQuantity+=cOldQuantity+",";
 					sum+=(parseFloat(price)*parseFloat(quantity));
 				});
 				cartId=cartId.substring(0,cartId.length-1);
@@ -83,10 +107,10 @@
 							</tr>
 							<%for(var i in carts){if(!carts[i].cName)continue;%>
 							<tr>
-								<td><input type="checkbox" name="chkItem" data-id="<%=carts[i]._id%>" data-price="<%=carts[i].cPrice%>" data-index="<%=i%>" /></td>
+								<td><input type="checkbox" name="chkItem" data-id="<%=carts[i]._id%>" data-quantity="<%=carts[i].cQuantity%>" data-price="<%=carts[i].cPrice%>" data-index="<%=i%>" /></td>
 								<td><%=carts[i].cName%></td>
 								<td>￥<%=carts[i].cPrice%></td>
-								<td class="cart-quantity">
+								<td class="cart-quantity" data-id="<%=carts[i]._id%>">
 									<a href="javascript:void(0);" class="btn btn-default btn-xs" data-type="add">+</a>
 									<input type="text" id="Q<%=i%>" style="width: 40px;" value="<%=carts[i].cQuantity%>" />
 									<a href="javascript:void(0);" data-type="substr" class="btn btn-default btn-xs">-</a>

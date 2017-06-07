@@ -28,7 +28,9 @@
 								保密
 							<%}%></p>
 							<p>简介：<%=user.resume%></p>
-							<p>头像：<img src="<%=rootPath%>/images/<%=user.portrait%>" alt="" /></p>
+							<div class="portrait-container"><span class="pull-left">头像：</span><div class="pull-left portrait-wrap">
+								<img src="<%=rootPath%>/images/<%=user.portrait%>" alt="" />
+							</div></div>
 						<%}%>
 					</div>
 				</div>

@@ -37,7 +37,7 @@
 </head>
 <body>
 	<%- include('../common/header') %>
-	<div class="container-fluid">
+	<div class="container-fluid detail_wrap">
 		<div class="container">
 			<div class="row">
 				<div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
@@ -45,14 +45,16 @@
 				</div>
 				<div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
 					<p><%=commodity.name%></p>
-					<p><span>秒杀价</span>￥<%=commodity.price%></p>
+					<p><span>秒杀价:</span>￥<%=commodity.price%></p>
+					<p><span>重量:</span><%=commodity.commodityWeight%>kg</p>
 					<p>由塞菲尔官方旗舰店从广东深圳市发货，并提供售后服务。</p>
+					<p>温馨提示：支持7天无理由退货</p>
 					<div class="input-group pull-left commodity-quantity">
 						<span class="input-group-addon" data-type="add">+</span>
 						<input type="text" id="numacount" class="form-control" value="1" />
 						<span class="input-group-addon" data-type="substr">-</span>
 					</div>
-					<div class="pull-left"><a id="addtToCart" href="/commodity/addToCart/<%=commodity._id%>/1" class="btn">加入购物车</a></div>
+					<div class="pull-left addToCart"><a id="addtToCart" href="/commodity/addToCart/<%=commodity._id%>/1" class="btn">加入购物车</a></div>
 				</div>
 			</div>
 		</div>

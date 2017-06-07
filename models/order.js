@@ -1,23 +1,5 @@
 var Order=require('../common/mongo').Order;
 var Cart=require('./cart');
-//Order.plugin('addCommodities',{
-//	afterFindOne:function(order){
-//		if(order){
-////			order.commodities=[];
-//			Promise.all(order.cartId.split(',').map(function(cartId){
-////				order.commodities.push(cartId);
-//				return Cart.getCartCommodityById(cartId).then(function(cart){
-////					order.commodities.push(cart);
-//					return cart;
-//				});
-//			})).then(function(carts){
-////				console.log(carts);
-//				order.commodities=carts;
-//			});
-//		}
-//		return order;
-//	}
-//});
 module.exports={
 	createOrder:function(order){
 		return Order.create(order).addCreatedAt().exec();

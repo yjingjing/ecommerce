@@ -28,7 +28,7 @@
 							</tr>
 							<%for(var i in orders){if(!orders[i].amount)continue;%>
 							<tr>
-								<td><%=parseInt(i)+1%>&nbsp;&nbsp;<%=orders[i]._id%></td>
+								<td><%=parseInt(i)+1%></td>
 								<td><%=orders[i].created_at%></td>
 								<td><%if(orders[i].oStatus==0){%>
 									待支付

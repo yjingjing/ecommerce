@@ -19,17 +19,18 @@
 				<div class="col-xs-12 col-sm-9 col-md-9 col-lg-10">
 					<div class="right-wrap">
 						<%if(user){%>
-						<form action="/personal/updateinfo" method="post">
+						<form action="/personal/updateinfo" method="post" enctype="multipart/form-data">
+							<input type="hidden" name="id" value="<%=user._id%>" />
 							<div class="input-group">
 								<span class="input-group-addon">用户名：</span>
 								<input type="text" class="form-control" name="name" value="<%=user.name%>" readonly="readonly" />
 							</div>
 							<div class="input-group">
-								<span class="input-group-addon">性别：<%=user.gender%></span>
+								<span class="input-group-addon">性别：</span>
 								<select name="gender" id="" class="form-control">
-									<option value="m">女</option>
-									<option value="f">男</option>
-									<option value="x">保密</option>
+									<option value="f" <%if(user.gender=='f'){%>selected<%}%>>男</option>
+									<option value="m" <%if(user.gender=='m'){%>selected<%}%>>女</option>
+									<option value="x" <%if(user.gender=='x'){%>selected<%}%>>保密</option>
 								</select>
 							</div>
 							<div class="input-group">
@@ -41,6 +42,7 @@
 								<input type="file" name="portrait" id="" />
 								<img src="<%=rootPath%>/images/<%=user.portrait%>" alt="" />
 							</div>
+							<input type="submit" value="提交" />
 						</form>
 						<%}%>
 					</div>

@@ -12,5 +12,9 @@ module.exports={
 	deleteCommodityStockNum:function(commodity,count){
 		var remainStockNum=commodity.stockNum-count;
 		return Commodity.update({_id:commodity._id},{$set:{stockNum:remainStockNum}}).exec();
+	},
+	addCommodityStockNum:function(commodity,count){
+		var remainStockNum=commodity.stockNum+count;
+		return Commodity.update({_id:commodity._id},{$set:{stockNum:remainStockNum}}).exec();
 	}
 };

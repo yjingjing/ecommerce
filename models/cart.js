@@ -16,6 +16,9 @@ module.exports={
 	addCartCommodityQuantity:function(cart,quantity){
 		return Cart.update({_id:cart._id},{$set:{cQuantity:(cart.cQuantity+quantity)}}).exec();
 	},
+	deleteCartCommodityQuantity:function(cart,quantity){
+		return Cart.update({_id:cart._id},{$set:{cQuantity:(cart.cQuantity-quantity)}}).exec();
+	},
 	getCartCommodityById:function(id){
 		return Cart.findOne({_id:id}).addCreatedAt().exec();
 	},
