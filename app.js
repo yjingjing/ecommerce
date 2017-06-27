@@ -5,6 +5,7 @@ var bodyParser=require('body-parser');
 var flash=require('connect-flash');
 var path=require('path');
 var config=require('config-lite')(__dirname);
+var pkg=require('./package');
 var route=require('./routes');
 var CatagoryModel=require('./models/commoditycatagory');
 var CommodityCatagory=require('./common/mongo').Commoditycatagory;
@@ -16,16 +17,16 @@ app.set('view engine','ejs');
 app.use(express.static(path.join(__dirname,'public')));
 app.use(session({
 	//设置cookie中保存session id的字段名称
-	name:'ecommerce',
+	name:config.session.key,
 	//通过设置secrect来计算hash值并放在cookie中，使产生的signedCookie防篡改
-	secret:'ecommerce',
+	secret:config.session.secret,
 	//强制更新session
 	resave:true,
 	//设置为false,强制创建一个session，即使用户未登录
 	saveUninitialized:false,
 	cookie:{
 		//过期时间，过期后cookie中的session id自动删除
-		maxAge:2900000
+		maxAge:config.session.maxAge
 	},
 	store:new MongoStore({
 		url:config.mongodb
@@ -41,7 +42,7 @@ app.use(require('express-formidable')({
 }));
 // 没有挂载路径的中间件，应用的每个请求都会执行该中间件
 app.use(function(req,res,next){
-	res.locals.rootPath='http://localhost:8080';
+	res.locals.rootPath=config.rootPath;
 	res.locals.user=req.session.user;    
 	res.locals.catagorys=req.session.catagories;
 
@@ -51,6 +52,6 @@ app.use(function(req,res,next){
 	next();
 });
 route(app);
-app.listen(8080,function(){
-	console.log('服务启动');
+app.listen(config.port,function(){
+	console.log(`${pkg.name} listening on port ${config.port}`);
 });

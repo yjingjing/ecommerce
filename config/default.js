@@ -1,3 +1,10 @@
 module.exports={
+	port:8080,
+	rootPath:"http://localhost:8080",
+	session:{
+		secret:'ecommerce',
+		key:'ecommerce',
+		maxAge:2900000
+	},
 	mongodb:'mongodb://127.0.0.1:27017/ecommerce'
 }
