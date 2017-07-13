@@ -2,6 +2,7 @@ var express=require('express');
 var session=require('express-session');
 var MongoStore=require('connect-mongo')(session);
 var bodyParser=require('body-parser');
+var favicon = require('serve-favicon')
 var flash=require('connect-flash');
 var path=require('path');
 var config=require('config-lite')(__dirname);
@@ -15,6 +16,7 @@ app.set('view engine','ejs');
 //app.use(bodyParser.json());
 //app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname,'public')));
+app.use(favicon(path.join(__dirname, 'public','images', 'favico.ico')))
 app.use(session({
 	//设置cookie中保存session id的字段名称
 	name:config.session.key,
