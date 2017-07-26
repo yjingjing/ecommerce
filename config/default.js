@@ -1,6 +1,7 @@
 module.exports={
 	port:8080,
 	rootPath:"http://localhost:8080",
+	imgPath:"http://localhost:9090",
 	session:{
 		secret:'ecommerce',
 		key:'ecommerce',

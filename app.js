@@ -45,6 +45,7 @@ app.use(require('express-formidable')({
 // 没有挂载路径的中间件，应用的每个请求都会执行该中间件
 app.use(function(req,res,next){
 	res.locals.rootPath=config.rootPath;
+	res.locals.imgPath=config.imgPath;
 	res.locals.user=req.session.user;    
 	res.locals.catagorys=req.session.catagories;
 
