@@ -1,1 +1,224 @@
-*{font-family:"microsoft yahei"}.img-responsive{width:100%;height:auto}a:hover{text-decoration:none}.header-top{background:#f5f5f5;color:#333;font-size:12px}.header-top ul{height:30px;line-height:30px;margin-bottom:0}.header-top ul li a:link,.header-top ul li a:visited{color:#333}.navbar,.navbar-nav>li>a:link,.navbar-nav>li>a:visited{color:#fff}.header-logo{width:250px}.navbar{background:#f10180;height:40px;min-height:40px}.navbar-nav>li>a{padding:10px 20px}.navigatin .nav>li.active>a,.navigatin .nav>li>a:hover{background:#bd1067}.nav-tabs>li>a{color:#555}.brand-title{border-bottom:1px solid #1a1a1a;line-height:40px;font-size:20px}.brand-title a{font-size:14px}.brand-title a:link,.brand-title a:visited{color:#333}.footer,.footer a:link,.footer a:visited,.img-wrap p{color:#fff}.img-wrap{position:relative;width:100%;overflow:hidden;height:auto}.img-wrap p{width:100%;height:30px;position:absolute;bottom:-10px;left:0;right:0;background:rgba(0,0,0,.6);font-size:12px;line-height:30px;padding:0 10px}.img-wrap~p{height:40px;line-height:40px}.catagory-container{margin-bottom:20px}.input-group{margin-bottom:10px;width:100%}.input-group .input-group-addon{background:0 0;border:0}.input-group .input-group-addon:nth-of-type(1){min-width:100px;border:0;text-align:right}.footer{background:#1d1d21;font-size:14px;padding:10px 0}.footer ul li{line-height:36px;height:36px}.footer ul.links li{padding:0}.footer ul li a{height:14px;line-height:14px;padding:0 20px}.left-wrap h2,.left-wrap ul li{line-height:40px}.left-wrap{background:#dcdcdc}.left-wrap h2{font-size:16px;background:#0068b7;margin-top:0;margin-bottom:0;color:#fff;height:40px}.left-wrap ul{padding:15px 30px;font-size:12px}.left-wrap ul li a:link,.left-wrap ul li a:visited{color:#333}.addToCart{background:#df3033}.addToCart a:link,.addToCart a:visited{color:#fff}.commodity-quantity.input-group{width:160px;margin-bottom:0;margin-right:60px}.commodity-quantity.input-group .input-group-addon{width:30px;max-width:30px;padding-left:0;padding-right:0;text-align:center;border:1px solid #ccc;border-radius:0}.commodity-quantity.input-group .input-group-addon:nth-of-type(1){border-right:0}.commodity-quantity.input-group .input-group-addon:nth-of-type(2){border-left:0}.commodity-quantity.input-group .form-control{width:100px}.detail_wrap{margin-bottom:10px;min-height:200px}.portrait-wrap{width:100px;height:100px;border-radius:50%;overflow:hidden}.portrait-wrap img{width:100%;height:100%}
+* {
+  font-family: "microsoft yahei";
+}
+.img-responsive {
+  width: 100%;
+  height: auto;
+}
+a:hover {
+  text-decoration: none;
+}
+@media (max-width:768px ) {
+	.login_panel{margin: 50px auto;}
+}
+.login_panel input[type="submit"]{
+	background: #E92322;color: #fff;
+}
+.header-top {
+  background: #f5f5f5;
+  color: #333;
+  font-size: 12px;
+}
+.header-top ul {
+  height: 30px;
+  line-height: 30px;
+  margin-bottom: 0px;
+}
+.header-top ul li a:link,
+.header-top ul li a:visited {
+  color: #333;
+}
+.header-logo {
+  width: 250px;
+}
+.navbar-mall {
+  background: #f10180;
+  border: 0px;
+  min-height: 40px;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+}
+.navbar-mall .navbar-nav > li > a {
+  color: #fff;
+}
+.navbar-mall .navbar-nav > li > a:hover,
+.navbar-mall .navbar-nav > li > a:focus {
+  color: #fff;
+  background: #bd1067;
+}
+.navbar-mall .navbar-nav > .active > a,
+.navbar-mall .navbar-nav > .active > a:hover,
+.navbar-mall .navbar-nav > .active > a:focus {
+  color: #fff;
+  background: #bd1067;
+}
+@media (min-width: 768px) {
+  .navbar-mall {
+    border-radius: 0px;
+  }
+  .navbar-mall .navbar-nav > li > a {
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+}
+.navbar-mall .navbar-collapse .navbar-nav {
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+.navbar-mall .navbar-toggle .icon-bar{
+	background: #fff;
+}
+.navbar-mall .navbar-toggle{
+	border-color: #fff;
+}
+.navbar-mall .navbar-toggle:hover,
+.navbar-mall .navbar-toggle:focus{
+	background: transparent;
+}
+.navbar-mall .nav>li>a{
+	padding: 10px 20px;
+}
+.nav-tabs > li > a {
+  color: #555;
+}
+.brand-title {
+  border-bottom: 1px solid #1a1a1a;
+  line-height: 40px;
+  font-size: 20px;
+}
+.brand-title a {
+  font-size: 14px;
+}
+.brand-title a:link,
+.brand-title a:visited {
+  color: #333;
+}
+.img-wrap {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  height: auto;
+}
+.img-wrap p {
+  width: 100%;
+  height: 30px;
+  position: absolute;
+  bottom: -10px;
+  left: 0px;
+  right: 0px;
+  background: rgba(0, 0, 0, 0.6);
+  color: #fff;
+  font-size: 12px;
+  line-height: 30px;
+  padding: 0px 10px;
+}
+.img-wrap ~ p {
+  height: 40px;
+  line-height: 40px;
+}
+.catagory-container {
+  margin-bottom: 20px;
+}
+.input-group {
+  margin-bottom: 10px;
+  width: 100%;
+}
+.input-group .input-group-addon {
+  background: none;
+  border: 0px;
+}
+.input-group .input-group-addon:nth-of-type(1) {
+  min-width: 100px;
+  border: 0px;
+  text-align: right;
+}
+.footer {
+  background: #1d1d21;
+  color: #fff;
+  font-size: 14px;
+  padding: 10px 0px;
+}
+.footer a:link,
+.footer a:visited {
+  color: #fff;
+}
+.footer ul li {
+  line-height: 36px;
+  height: 36px;
+}
+.footer ul.links li {
+  padding: 0px;
+}
+.footer ul li a {
+  height: 14px;
+  line-height: 14px;
+  padding: 0px 20px;
+}
+.left-wrap {
+  background: #dcdcdc;
+}
+.left-wrap h2 {
+  font-size: 16px;
+  background: #0068b7;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  color: #fff;
+  height: 40px;
+  line-height: 40px;
+}
+.left-wrap ul {
+  padding: 15px 30px;
+  font-size: 12px;
+}
+.left-wrap ul li {
+  line-height: 40px;
+}
+.left-wrap ul li a:link,
+.left-wrap ul li a:visited {
+  color: #333;
+}
+.addToCart {
+  background: #df3033;
+}
+.addToCart a:link,
+.addToCart a:visited {
+  color: #fff;
+}
+.commodity-quantity.input-group {
+  width: 160px;
+  margin-bottom: 0px;
+  margin-right: 60px;
+}
+.commodity-quantity.input-group .input-group-addon {
+  width: 30px;
+  max-width: 30px;
+  padding-left: 0px;
+  padding-right: 0px;
+  text-align: center;
+  border: 1px solid #ccc;
+  border-radius: 0px;
+}
+.commodity-quantity.input-group .input-group-addon:nth-of-type(1) {
+  border-right: 0px;
+}
+.commodity-quantity.input-group .input-group-addon:nth-of-type(2) {
+  border-left: 0px;
+}
+.commodity-quantity.input-group .form-control {
+  width: 100px;
+}
+.detail_wrap {
+  margin-bottom: 10px;
+  min-height: 200px;
+}
+.portrait-wrap {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+.portrait-wrap img {
+  width: 100%;
+  height: 100%;
+}

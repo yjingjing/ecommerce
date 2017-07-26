@@ -30,11 +30,20 @@
 		</div>
 	</div>
 </div>
-<header class="navbar navbar-static-top">
-	<div class="container">
-		<nav class="collapse navbar-collapse navigatin">
-			<ul class="nav navbar-nav">
-				<%if(cId){%>
+<nav class="navbar navbar-default navbar-mall" data-spy="affix" data-offset-top="130" data-offset-bottom="200">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <!--<a class="navbar-brand" href="#">Brand</a>-->
+    </div>
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <%if(cId){%>
 					<li><a href="/home">首页</a></li>
 					<%for(var i in catagorys){if(!catagorys[i].cname)continue;%>
 						<%if(catagorys[i]._id==cId){%>
@@ -49,7 +58,7 @@
 					<li><a href="/commodity/<%=catagorys[i]._id%>"><%=catagorys[i].cname%></a></li>
 					<%}%>
 				<%}%>
-			</ul>
-		</nav>
-	</div>
-</header>
+      </ul>
+    </div>
+  </div>
+</nav>
